@@ -9,6 +9,7 @@ public class Tray {
     private int total = 0;
     private final static int OBJETIVO = 100;
 
+
     public int getTotal() {
         return total;
     }
@@ -18,7 +19,7 @@ public class Tray {
     }
 
     public synchronized Pizza cook() {
-        while (tray.size() >= CAPACIDAD_MAX) {
+        while (tray.size() == CAPACIDAD_MAX) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -30,7 +31,6 @@ public class Tray {
         piz.setPrice();
         tray.add(piz);
         notifyAll();
-        total++;
         return piz;
     }
 

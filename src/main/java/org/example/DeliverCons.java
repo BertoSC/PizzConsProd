@@ -4,16 +4,22 @@ import java.util.Random;
 
 public class DeliverCons implements Runnable{
     Tray tray;
+    int counter;
 
     public DeliverCons(Tray tray){
         this.tray=tray;
+        this.counter=0;
+    }
+
+
+    public synchronized void setCounter() {
+        counter++;
     }
 
     @Override
     public void run() {
-        while(tray.getTotal()<100) {
+        while(counter<100) {
             Random rm = new Random();
-            // 1000 and 2000ms
             try {
                 Thread.sleep(rm.nextInt(1000, 2000));
             } catch (InterruptedException e) {
@@ -21,6 +27,7 @@ public class DeliverCons implements Runnable{
             }
             Pizza p = tray.takePizza();
             System.out.println("El repartidor ha cogido la pizza" + p.getId() + " con precio " + p.getPrice());
+            setCounter();
         }
 
     }

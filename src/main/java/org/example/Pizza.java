@@ -22,11 +22,11 @@ public class Pizza {
         return price;
     }
 
-    public void setId(int id) {
+    public synchronized void  setId(int id) {
         this.id = id;
     }
 
-    public void setPrice() {
+    public synchronized void setPrice() {
         this.price= rm.nextInt(MIN_PRICE, MAX_PRICE)+10;
     }
 }
