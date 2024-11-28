@@ -5,11 +5,9 @@ import java.util.Random;
 public class CookProd implements Runnable{
     Tray tray;
 
-
     public CookProd(Tray tr){
         this.tray=tr;
     }
-
 
     @Override
     public void run() {
